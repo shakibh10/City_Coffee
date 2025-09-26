@@ -9,14 +9,6 @@ const AddCoffee = () => {
         const form = event.target; 
         const formdata =new FormData(form) 
         const newCoffee = Object.fromEntries(formdata.entries())    
-        // const name = form.name.value;
-        // const chef = form.chef.value;
-        // const supplier = form.supplier.value;
-        // const taste = form.taste.value;
-        // const category = form.category.value;
-        // const details = form.details.value;
-        // const photo = form.photo.value; 
-        // const newCoffee = { name, chef, supplier, taste, category, details, photo };
         console.log(newCoffee);
 
 
@@ -30,15 +22,17 @@ const AddCoffee = () => {
         } )
         .then(res =>res.json())
         .then(data =>{
+            console.log(data);
             if(data.insertedId){
-                console.log('Added successfully');
                 Swal.fire({
-                title: "Drag me!",
-                 icon: "success",
-                 draggable: true
-    
-    });
+                    title: 'Success!',
+                    text: 'Coffee Added Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
             }
+
+            form.reset();
             
         })
 
@@ -64,8 +58,6 @@ const AddCoffee = () => {
               <input
                 type="text"
                 name="name"
-                // value={formData.name}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter coffee name"
                 required
@@ -77,8 +69,6 @@ const AddCoffee = () => {
               <input
                 type="text"
                 name="chef"
-                // value={formData.chef}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter coffee chef"
                 required
@@ -90,8 +80,6 @@ const AddCoffee = () => {
               <input
                 type="text"
                 name="supplier"
-                // value={formData.supplier}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter coffee supplier"
                 required
@@ -99,14 +87,12 @@ const AddCoffee = () => {
             </fieldset>
 
             <fieldset className="fieldset w-full">
-              <label className="label">Taste</label>
+              <label className="label">Price</label>
               <input
-                type="text"
-                name="taste"
-                // value={formData.taste}
-                // onChange={handleChange}
+                type="number"
+                name="price"
                 className="input w-full"
-                placeholder="Enter coffee taste"
+                placeholder=" Enter the coffee price "
                 required
               />
             </fieldset>
@@ -116,8 +102,6 @@ const AddCoffee = () => {
               <input
                 type="text"
                 name="category"
-                // value={formData.category}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter coffee category"
                 required
@@ -129,8 +113,6 @@ const AddCoffee = () => {
               <input
                 type="text"
                 name="details"
-                // value={formData.details}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter coffee details"
                 required
@@ -142,8 +124,6 @@ const AddCoffee = () => {
               <input
                 type="url"
                 name="photo"
-                // value={formData.photo}
-                // onChange={handleChange}
                 className="input w-full"
                 placeholder="Enter photo URL"
                 required
